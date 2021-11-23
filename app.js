@@ -8,15 +8,28 @@ var generateEquation = function () {
   return answer;
 }
 
+var timer = function () {
+  var count = 10;
+  var counter = setInterval(function () {
+    count--;
+    $('#counterBox').html(count);
+    if (count <= 0) {
+      clearInterval(counter);
+    }
+  }, 1000);
+
+}
+
 $(document).ready(function () {
 
   var ans = generateEquation();
+
+  timer();
 
   $('#answerBox').keydown(function () {
 
     $('#answerBox').keyup(function () {
       if ($(this).val() == ans) {
-        console.log('correct');
         ($(this).val(''));
         ans = generateEquation();
     }
