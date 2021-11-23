@@ -8,31 +8,31 @@ var generateEquation = function () {
   return answer;
 }
 
-var timer = function () {
-  var count = 10;
-  var counter = setInterval(function () {
-    count--;
-    $('#counterBox').html(count);
-    if (count <= 0) {
-      clearInterval(counter);
-    }
-  }, 1000);
-
-}
 
 $(document).ready(function () {
 
   var ans = generateEquation();
 
-  timer();
+  $('#answerBox').one('keydown', function () {
 
-  $('#answerBox').keydown(function () {
+    var count = 10;
+    var timer = setInterval(function () {
+      count--;
+      $('#counterBox').html(count);
+      if (count <= 0) {
+        clearInterval(timer);
+      }
+    }, 1000);
 
     $('#answerBox').keyup(function () {
       if ($(this).val() == ans) {
         ($(this).val(''));
         ans = generateEquation();
-    }
+        if (count > 0) {
+          count++;
+          $('#counterBox').html(count);
+        }
+      }
     });
 
   });
