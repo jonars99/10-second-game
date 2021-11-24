@@ -11,10 +11,14 @@ var generateEquation = function () {
 var play = function () {
 
   var ans = generateEquation();
+  var score = 0;
+  var highScore = 0;
 
   var countdown = function () {
 
-    var score = 0;
+    score = 0;
+    $('#counterBox').html('10');
+    $('#currentScore').html(score);
 
     $('#answerBox').one('keydown', function () {
 
@@ -23,10 +27,11 @@ var play = function () {
         seconds--;
         $('#counterBox').html(seconds);
         if (seconds <= 0) {
+          if (score > highScore) {
+            highScore = score;
+            $('#highScore').html(highScore);
+          }
           clearInterval(timer);
-          $('#counterBox').html('10');
-          score = 0;
-          $('#currentScore').html('0');
           countdown();
         }
       }, 1000);
@@ -45,7 +50,9 @@ var play = function () {
       });
     });
   };
+
   countdown();
+
 };
 
 $(document).ready(function () {
