@@ -14,26 +14,32 @@ var play = function () {
 
   var countdown = function () {
 
+    var score = 0;
+
     $('#answerBox').one('keydown', function () {
 
-      var count = 10;
+      var seconds = 10;
       var timer = setInterval(function () {
-        count--;
-        $('#counterBox').html(count);
-        if (count <= 0) {
+        seconds--;
+        $('#counterBox').html(seconds);
+        if (seconds <= 0) {
           clearInterval(timer);
           $('#counterBox').html('10');
+          score = 0;
+          $('#currentScore').html('0');
           countdown();
         }
       }, 1000);
 
       $('#answerBox').keyup(function () {
         if ($(this).val() == ans) {
+          score++;
+          $('#currentScore').html(score);
           ($(this).val(''));
           ans = generateEquation();
-          if (count > 0) {
-            count++;
-            $('#counterBox').html(count);
+          if (seconds > 0) {
+            seconds++;
+            $('#counterBox').html(seconds);
           }
         }
       });
