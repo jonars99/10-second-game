@@ -4,15 +4,22 @@ var generateEquation = function () {
   var y = Math.floor((Math.random() * 10) + 1);
   var operonArr = ['+', '-', '*', '/'];
   var i = Math.floor(Math.random() *4);
-  var equation = x + ' ' + operonArr[i] + ' ' + y;
-  var answer = eval(equation);
-  console.log(equation + ' is ' + answer);
+  equation = x + ' ' + operonArr[i] + ' ' + y;
+  answer = eval(equation);
+  if (answer < 0 || answer % 1 != 0) {
+    console.log('minus number');
+    generateEquation();
+  }
+  console.log(answer);
   $('#equationBox').empty();
   $('#equationBox').append('<p>' + equation + '</p>');
   return answer;
 }
 
 var play = function () {
+
+  var anwser;
+  var equation;
 
   var ans = generateEquation();
   var score = 0;
