@@ -2,9 +2,13 @@
 var generateEquation = function () {
   var x = Math.floor((Math.random() * 10) + 1);
   var y = Math.floor((Math.random() * 10) + 1);
-  var answer = x + y;
+  var operonArr = ['+', '-', '*', '/'];
+  var i = Math.floor(Math.random() *4);
+  var equation = x + ' ' + operonArr[i] + ' ' + y;
+  var answer = eval(equation);
+  console.log(equation + ' is ' + answer);
   $('#equationBox').empty();
-  $('#equationBox').append('<p>' + x + ' + ' + y + '</p>');
+  $('#equationBox').append('<p>' + equation + '</p>');
   return answer;
 }
 
