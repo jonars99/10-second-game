@@ -8,34 +8,43 @@ var generateEquation = function () {
   return answer;
 }
 
-
-$(document).ready(function () {
+var play = function () {
 
   var ans = generateEquation();
 
-  $('#answerBox').one('keydown', function () {
+  var countdown = function () {
 
-    var count = 10;
-    var timer = setInterval(function () {
-      count--;
-      $('#counterBox').html(count);
-      if (count <= 0) {
-        clearInterval(timer);
-      }
-    }, 1000);
+    $('#answerBox').one('keydown', function () {
 
-    $('#answerBox').keyup(function () {
-      if ($(this).val() == ans) {
-        ($(this).val(''));
-        ans = generateEquation();
-        if (count > 0) {
-          count++;
-          $('#counterBox').html(count);
+      var count = 10;
+      var timer = setInterval(function () {
+        count--;
+        $('#counterBox').html(count);
+        if (count <= 0) {
+          clearInterval(timer);
+          $('#counterBox').html('10');
+          countdown();
         }
-      }
-    });
+      }, 1000);
 
-  });
+      $('#answerBox').keyup(function () {
+        if ($(this).val() == ans) {
+          ($(this).val(''));
+          ans = generateEquation();
+          if (count > 0) {
+            count++;
+            $('#counterBox').html(count);
+          }
+        }
+      });
+    });
+  };
+  countdown();
+};
+
+$(document).ready(function () {
+
+  play();
 
 });
 
