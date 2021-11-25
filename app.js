@@ -124,6 +124,7 @@ var checkboxes = function () {
 
 $(document).ready(function () {
 
+  $('#add').attr('checked', true);
   play();
 
   checkboxes();
