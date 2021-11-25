@@ -3,17 +3,23 @@ var operator = ['+'];
 
 var generateEquation = function () {
 
-  if (operator.length > 0) {
-    var x = Math.floor((Math.random() * 10) + 1);
-    var y = Math.floor((Math.random() * 10) + 1);
+  var rangeNum = Number($('#rangeBar').val());
+
+  var getEquation = function () {
+    var x = Math.floor((Math.random() * rangeNum) + 1);
+    var y = Math.floor((Math.random() * rangeNum) + 1);
     var i = Math.floor(Math.random() * operator.length);
     equation = x + ' ' + operator[i] + ' ' + y;
     answer = eval(equation);
-    if (answer < 0 || answer % 1 != 0) {
-      generateEquation();
+  }
+
+  if (operator.length > 0) {
+    answer = getEquation();
+    while (answer < 0 || answer % 1 != 0) {
+      getEquation();
+      $('#equationBox').empty();
+      $('#equationBox').append('<p>' + equation + '</p>');
     }
-    $('#equationBox').empty();
-    $('#equationBox').append('<p>' + equation + '</p>');
     return answer;
   }
 }
@@ -128,6 +134,11 @@ $(document).ready(function () {
   play();
 
   checkboxes();
+
+  $('#rangeBar').on('change', function () {
+    $('#rangeNumber').html(this.value);
+  });
+
 });
 
 
