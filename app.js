@@ -1,24 +1,26 @@
 
+var operator = ['+'];
+
 var generateEquation = function () {
-  var x = Math.floor((Math.random() * 10) + 1);
-  var y = Math.floor((Math.random() * 10) + 1);
-  var operonArr = ['+', '-', '*', '/'];
-  var i = Math.floor(Math.random() *4);
-  equation = x + ' ' + operonArr[i] + ' ' + y;
-  answer = eval(equation);
-  if (answer < 0 || answer % 1 != 0) {
-    console.log('minus number');
-    generateEquation();
+
+  if (operator.length > 0) {
+    var x = Math.floor((Math.random() * 10) + 1);
+    var y = Math.floor((Math.random() * 10) + 1);
+    var i = Math.floor(Math.random() * operator.length);
+    equation = x + ' ' + operator[i] + ' ' + y;
+    answer = eval(equation);
+    if (answer < 0 || answer % 1 != 0) {
+      generateEquation();
+    }
+    $('#equationBox').empty();
+    $('#equationBox').append('<p>' + equation + '</p>');
+    return answer;
   }
-  console.log(answer);
-  $('#equationBox').empty();
-  $('#equationBox').append('<p>' + equation + '</p>');
-  return answer;
 }
 
 var play = function () {
 
-  var anwser;
+  var answer;
   var equation;
 
   var ans = generateEquation();
@@ -66,12 +68,66 @@ var play = function () {
 
 };
 
+var checkboxes = function () {
+
+  var index;
+
+  $('#add').change(function () {
+    if (this.checked) {
+      if (operator.indexOf('+') == -1) {
+        operator.push('+');
+      }
+    }
+    else if (!this.checked) {
+      index = operator.indexOf('+');
+      operator.splice(index, 1);
+    }
+  })
+
+  $('#minus').change(function () {
+    if (this.checked) {
+      if (operator.indexOf('-') == -1) {
+        operator.push('-');
+      }
+    }
+    else if (!this.checked) {
+      index = operator.indexOf('-');
+      operator.splice(index, 1);
+    }
+  })
+
+  $('#multiply').change(function () {
+    if (this.checked) {
+      if (operator.indexOf('*') == -1) {
+        operator.push('*');
+      }
+    }
+    else if (!this.checked) {
+      index = operator.indexOf('*');
+      operator.splice(index, 1);
+    }
+  })
+
+  $('#divide').change(function () {
+    if (this.checked) {
+      if (operator.indexOf('/') == -1) {
+        operator.push('/');
+      }
+    }
+    else if (!this.checked) {
+      index = operator.indexOf('/');
+      operator.splice(index, 1);
+    }
+  })
+
+}
+
 $(document).ready(function () {
 
   play();
 
+  checkboxes();
 });
-
 
 
 
