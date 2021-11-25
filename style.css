@@ -1,0 +1,35 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  letter-spacing: 2px;
+}
+
+#timer {
+  border: 3px solid #dd0e0e;
+  width: 10px;
+  border-radius: 50%;
+  padding: 1%;
+}
+
+.math-symbol {
+  color: #cf3e08;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.max-num {
+  font-size: 18px;
+}
+
+.scores {
+  width: 200px;
+  border: 1px solid #7e7e7e;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+}
+
+#currentScore, #highScore {
+  font-weight: 300;
+  color: green;
+}
