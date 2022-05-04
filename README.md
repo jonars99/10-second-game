@@ -1,8 +1,8 @@
 # 10 Second Maths Game
 
 How many equations can you calculate in time??
-
 Each correct answer adds 1 second to the timer!
+[Depolyed on Netlify](https://10s-math-game-jr.netlify.app/)
 
 ## Features
 
